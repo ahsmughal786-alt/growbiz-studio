@@ -8,8 +8,8 @@
 export const site = {
   name: "Growbiz Studio",
   tagline: "Build. Design. Grow. Automate.",
-  // TODO: live domain, no trailing slash (used for SEO, sitemap, social previews)
-  url: "https://growbizstudio.com",
+  // Live domain, no trailing slash (used for SEO, sitemap, social previews)
+  url: "https://www.growbizstudio.com",
 
   seo: {
     title: "Growbiz Studio | Software House & Digital Agency in Jersey City, NJ",

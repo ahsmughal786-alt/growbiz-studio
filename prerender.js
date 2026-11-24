@@ -89,7 +89,6 @@ fs.rmSync(ssrDir, { recursive: true, force: true });
 
 // ---- Pre-launch checklist ----
 const warn = [];
-if (/growbizstudio\.com/.test(site.url)) warn.push(`site.url is "${site.url}". Change it if the real domain is different (used for Google, sitemap & social previews)`);
 if (!site.contact.phone) warn.push("No phone number yet (site.js → contact.phone). \"Call to Discuss\" scrolls to the form until added");
 warn.push("Studio page (/studio/) still has DRAFT content (src/data/studio.js)");
 const noLink = projects.filter((p) => !p.link).map((p) => p.short);
