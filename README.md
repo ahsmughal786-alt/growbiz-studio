@@ -1,85 +1,159 @@
-# Growbiz Studio — Website
+<div align="center">
 
-Static website built with **React 19 + Vite 6 + Tailwind CSS 4**, pre-rendered to plain HTML at build time (fast + SEO-friendly).
+<img src="public/favicon.svg" alt="Growbiz Studio logo" width="72" />
 
-**Pages**
-- `/` — main agency site (services, AI, photography, work, team, process, FAQ, contact)
-- `/studio/` — Photography & Video Studio (sessions, portfolio, packages, booking form, FAQ)
-- `/store/` — Store, currently **under construction** (hidden from Google with `noindex`; edit text in `src/data/store.js`). When the store is ready, replace this page and remove `noindex: true` in `prerender.js`.
+# Growbiz Studio
 
-Links marked `newTab: true` in the menus (Store) and the Photography section buttons open in a new browser tab.
+**Build. Design. Grow. Automate.**
 
-## Run it
+Official website of Growbiz Studio, a software house and digital agency based in Jersey City, NJ.
+
+[![Live Site](https://img.shields.io/badge/Live%20Site-growbizstudio.com-15803d?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.growbizstudio.com)
+
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![SEO](https://img.shields.io/badge/SEO-Pre--rendered-15803d)
+
+<br />
+
+<a href="https://www.growbizstudio.com">
+  <img src="public/og-image.png" alt="Growbiz Studio website preview" width="800" />
+</a>
+
+</div>
+
+---
+
+## Overview
+
+Growbiz Studio offers web and mobile apps, custom software, e-commerce, UI/UX and branding, digital marketing and SEO, and AI agents that automate business workflows. This repository holds the source code of the company's marketing website.
+
+The site is built with **React 19**, **Vite 6** and **Tailwind CSS 4**. At build time it is **pre-rendered to static HTML**, so pages load fast and search engines can index all of the content.
+
+🔗 **Live:** [www.growbizstudio.com](https://www.growbizstudio.com)
+
+## Features
+
+- ⚡ **Static pre-rendering:** every page ships as ready-made HTML, then React takes over in the browser
+- 🔍 **SEO built in:** meta tags, Open Graph, canonical URLs, JSON-LD (`ProfessionalService`, `FAQPage`), plus an auto-generated `sitemap.xml` and `robots.txt`
+- 🧩 **Content-driven:** all text, services, team, FAQs and pricing live in plain data files, so no component code needs editing
+- 📸 **Photography & Video Studio page** with portfolio, packages and a booking form
+- ✉️ **Working contact form** through [Web3Forms](https://web3forms.com), which falls back to the visitor's email app
+- 📱 **Fully responsive,** with smooth animations and accessible markup
+- 🎨 **One place for brand colours:** change them in a single `@theme` block
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Main agency site: services, AI solutions, photography, work, team, process, FAQ, contact |
+| `/studio/` | Photography & Video Studio: sessions, portfolio, packages, booking |
+| `/store/` | Store (coming soon; set to `noindex` until launch) |
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | React 19 |
+| Build tool | Vite 6 (multi-page) |
+| Styling | Tailwind CSS 4 |
+| Icons | Lucide React |
+| Rendering | Vite SSR build + custom pre-render script |
+| Forms | Web3Forms |
+
+## Getting Started
+
+**Requirements:** Node.js 18 or newer, and npm.
 
 ```bash
+# 1. Clone the repository
+git clone https://github.com/ahsmughal786-alt/growbiz-studio.git
+cd growbiz-studio
+
+# 2. Install dependencies
 npm install
-npm run dev        # local dev server → http://localhost:5173
-npm run build      # production build → /dist (pre-rendered + sitemap + robots.txt)
-npm run preview    # preview the production build
+
+# 3. Set up environment variables
+cp .env.example .env    # then add your Web3Forms key
+
+# 4. Start the dev server
+npm run dev             # → http://localhost:5173
 ```
 
-When you run `npm run build`, it ends with a **"Before going live"** list of anything still left to fill in.
+### Scripts
 
-## Edit content
-
-- **Main site:** `src/data/site.js` — text, services, projects, team, photography section, FAQs, contact details.
-- **Studio page:** `src/data/studio.js` — sessions, portfolio categories & photos, packages/prices, booking options, FAQs.
-- **Photos:** `public/photography/` (homepage) and `public/photography/portfolio/` (studio). Replace a file with the same name, or add new files and list them in `studio.js`. Use originals around 1600–2000px wide, JPG, under ~400 KB each.
-Anything marked `TODO` must be replaced before launch:
-
-| What | Where in `site.js` |
+| Command | Description |
 |---|---|
-| Domain (for SEO/sitemap) | `site.url` |
-| Email, address, phone & hours (optional) | `site.contact` |
-| Booking link (Calendly/Cal.com) | `site.bookingUrl` (empty = hidden) |
-| Social links | `site.social` (empty = hidden) |
-| Portfolio | `projects` → add real ones, set `placeholder: false`, add images to `public/work/` |
-| Testimonials | `testimonials` (empty = section hidden) |
-| Phone for "Call to Discuss" | `site.contact.phone` |
-| Project links (View Website buttons) | `projects` → `link` |
-| Team photos | `team` → `photo`, files in `public/team/` |
+| `npm run dev` | Start the local development server |
+| `npm run build` | Production build to `dist/`: pre-rendered HTML, sitemap and robots.txt |
+| `npm run preview` | Preview the production build locally |
 
-**Logo:** replace the placeholder mark in `src/components/Logo.jsx` with `<img src="/logo.svg" …>` and put the file in `/public`.
-**Social preview image:** `public/og-image.png` (1200×630).
+## Environment Variables
 
-## Contact form
+| Variable | Description |
+|---|---|
+| `VITE_WEB3FORMS_KEY` | Access key from [web3forms.com](https://web3forms.com) for the contact form |
 
-1. Go to https://web3forms.com, enter the email that should receive enquiries, and copy the access key.
-2. Copy `.env.example` to `.env` and paste the key: `VITE_WEB3FORMS_KEY=xxxx`.
-3. On Vercel/Netlify, add the same variable under **Environment Variables**.
-
-Without a key, the form falls back to opening the visitor's email app.
-
-## Deploy (Vercel, free)
-
-1. Push this folder to a GitHub repo.
-2. On vercel.com, click **Add New → Project**, import the repo, and keep the defaults (Framework: Vite, Output: `dist`).
-3. Add `VITE_WEB3FORMS_KEY` under Environment Variables, then deploy.
-4. Under **Settings → Domains**, add the domain and update the DNS records at the registrar. SSL is set up automatically.
-
-Netlify also works: build command `npm run build`, publish directory `dist`.
-
-**Shared hosting (Hostinger / cPanel):** run `npm run build`, then upload everything inside `dist/` (including the `studio/`, `store/` and `photography/` folders) to `public_html`.
-
-## After launch
-
-- Submit `https://yourdomain.com/sitemap.xml` in **Google Search Console** (it lists both pages).
-- Add **Google Analytics 4**: paste the gtag snippet into `index.html` `<head>`.
-- Create or verify the **Google Business Profile** and link it to the site.
-
-## Structure
+## Project Structure
 
 ```
-src/
-  data/site.js          ← main site content
-  data/studio.js        ← studio page content
-  studio/StudioPage.jsx ← studio page
-  components/           ← one file per section
-  App.jsx               ← section order
-  index.css             ← brand colours (@theme) + animations
-  entry-server.jsx      ← used for pre-rendering
-prerender.js            ← injects SEO tags, writes sitemap/robots, prints launch TODOs
-public/                 ← favicon, og-image, images
+growbiz-studio/
+├── public/                 # Static assets: favicon, OG image, photography
+├── src/
+│   ├── components/         # One component per page section
+│   ├── data/
+│   │   ├── site.js         # Main site content and settings
+│   │   ├── studio.js       # Studio page content
+│   │   └── store.js        # Store page content
+│   ├── studio/             # Studio page
+│   ├── store/              # Store page
+│   ├── App.jsx             # Section order for the main page
+│   ├── main.jsx            # Client entry
+│   ├── entry-server.jsx    # SSR entry used for pre-rendering
+│   └── index.css           # Tailwind theme, brand colours, animations
+├── studio/index.html       # Studio page HTML entry
+├── store/index.html        # Store page HTML entry
+├── index.html              # Main HTML entry
+├── prerender.js            # Static rendering, SEO tags, sitemap and robots.txt
+└── vite.config.js
 ```
 
-Brand colours are in `src/index.css` under `@theme` (`--color-brand-*`). Change them there and the whole site updates.
+## Editing Content
+
+| What to change | File |
+|---|---|
+| Text, services, projects, team, FAQs, contact details | `src/data/site.js` |
+| Studio sessions, portfolio, packages, booking options | `src/data/studio.js` |
+| Store page text | `src/data/store.js` |
+| Brand colours | `src/index.css` → `@theme` (`--color-brand-*`) |
+| Logo | `src/components/Logo.jsx` |
+| Images | `public/photography/` and `public/photography/portfolio/` |
+| Social preview image | `public/og-image.png` (1200×630) |
+
+For images, use JPGs about 1600–2000 px wide and under roughly 400 KB each.
+
+## Deployment
+
+**Vercel / Netlify**
+1. Import this repository.
+2. Build command: `npm run build`. Output directory: `dist`.
+3. Add `VITE_WEB3FORMS_KEY` under Environment Variables.
+4. Connect your custom domain.
+
+**Shared hosting (cPanel / Hostinger)**
+1. Run `npm run build`.
+2. Upload everything inside `dist/` to `public_html`.
+
+## Contact
+
+**Growbiz Studio**, Jersey City, New Jersey, USA
+🌐 [www.growbizstudio.com](https://www.growbizstudio.com) · ✉️ [growbizusa@gmail.com](mailto:growbizusa@gmail.com)
+
+---
+
+<div align="center">
+
+© Growbiz Studio. All rights reserved.
+
+</div>
